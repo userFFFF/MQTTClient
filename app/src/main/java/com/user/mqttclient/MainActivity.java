@@ -168,8 +168,13 @@ public class MainActivity extends AppCompatActivity {
             return this.mMessageList.size();
         }
 
+
         public void setData(List<DataModel> model) {
             this.mMessageList.addAll(model);
+        }
+
+        public void setData(DataModel model) {
+            this.mMessageList.add(model);
         }
 
         private class hostHolder extends RecyclerView.ViewHolder {
@@ -201,9 +206,8 @@ public class MainActivity extends AppCompatActivity {
 
         dataMessage.mContent = content;
         dataMessage.mType = type;
-        updateMessage.add(dataMessage);
 
-        mBubbleAdapter.setData(updateMessage);
+        mBubbleAdapter.setData(dataMessage);
         mBubbleAdapter.notifyDataSetChanged();
     }
 
