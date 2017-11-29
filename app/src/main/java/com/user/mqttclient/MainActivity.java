@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mBubbleAdapter = new bubbleAdapter();
         mRecyclerView.setAdapter(mBubbleAdapter);
+
         initMessage();
 
         mEditTextPub = findViewById(R.id.editText_pub);
@@ -86,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mTextPub = mEditTextPub.getText().toString();
+                mEditTextPub.setText("");//clear text
                 Log.d(TAG, "mTextPub:" + mTextPub);
                 updateMessage(mTextPub, DataModel.TYPE_PUBLISH);
                 new Thread(new Runnable() {
@@ -209,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
 
         mBubbleAdapter.setData(dataMessage);
         mBubbleAdapter.notifyDataSetChanged();
+        mRecyclerView.smoothScrollToPosition(mBubbleAdapter.getItemCount());
     }
 
     public class DataModel {
