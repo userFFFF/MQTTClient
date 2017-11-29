@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MQTTClient</string>
+    <string name="btn_pub">发送</string>
+</resources>
