@@ -1,6 +1,9 @@
 package com.user.mqttclient;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +32,11 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("finish");
+        registerReceiver(mFinishReceiver, filter);
+
         setContentView(R.layout.activity_login);
         mBtn_Login = findViewById(R.id.btn_login);
         mEditText_User = findViewById(R.id.edit_user);
@@ -126,4 +134,15 @@ public class LoginActivity extends AppCompatActivity {
             button.setEnabled(enable);
         }
     }
+
+    private BroadcastReceiver mFinishReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if("finish".equals(intent.getAction())) {
+                Log.e("#########", "I am " + getLocalClassName()
+                        + ",now finishing myself...");
+                finish();
+            }
+        }
+    };
 }

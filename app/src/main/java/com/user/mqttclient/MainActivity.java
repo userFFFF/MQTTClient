@@ -1,5 +1,6 @@
 package com.user.mqttclient;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private String mUser = "USER0";
     private String mPassWord = "admin";
     private String mTextPub;
-    private String mTopicName = "ANYUSER";
+    private String mTopicNamePub = "Client";
+    //private String mTopicNamePub = "Host";
     private int qos = 2;
 
     private EditText mEditTextPub;
@@ -93,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        mMqttService.publish(mTopicName, qos, mTextPub);
+                        mMqttService.publish(mTopicNamePub, qos, mTextPub);
                     }
                 }).start();
             }
@@ -132,6 +134,12 @@ public class MainActivity extends AppCompatActivity {
         EventBus.getDefault().unregister(this);
         mMqttService.disConnect();
         super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        getApplicationContext().sendBroadcast(new Intent("finish"));
     }
 
     private class bubbleAdapter extends RecyclerView.Adapter {
