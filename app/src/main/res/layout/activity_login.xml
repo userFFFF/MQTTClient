@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="60dp"
-    android:background="#25AE90"
+    android:background="#0080FF"
     android:orientation="vertical">
 
     <LinearLayout
@@ -23,10 +23,11 @@
 
         <EditText
             android:id="@+id/edit_user"
-            android:maxLength="8"
+            android:maxLength="10"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
+            android:textSize="16sp"
             android:background="#ffffff" />
     </LinearLayout>
 
@@ -90,7 +91,7 @@
             android:layout_weight="1"
             android:background="#ECEEF1"
             android:text="@string/txt_login"
-            android:textColor="#25AE90" />
+            android:textColor="#0080FF" />
 
         <Button
             android:id="@+id/btn_cancel"
@@ -99,7 +100,7 @@
             android:layout_weight="1"
             android:background="#ECEEF1"
             android:text="@string/txt_cancel"
-            android:textColor="#25AE90" />
+            android:textColor="#0080FF" />
     </LinearLayout>
 
 </LinearLayout>

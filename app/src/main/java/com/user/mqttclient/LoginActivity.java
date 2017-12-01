@@ -127,10 +127,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private void onSetButton(Button button, boolean enable) {
         if (enable) {
-            button.setTextColor(0xFF25AE90);
+            button.setTextColor(0xFF0080FF);
             button.setEnabled(enable);
         } else {
-            button.setTextColor(0xFFB5CEB0);
+            button.setTextColor(0xFF96C8FF);
             button.setEnabled(enable);
         }
     }
@@ -139,8 +139,6 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if("finish".equals(intent.getAction())) {
-                Log.e("#########", "I am " + getLocalClassName()
-                        + ",now finishing myself...");
                 finish();
             }
         }
