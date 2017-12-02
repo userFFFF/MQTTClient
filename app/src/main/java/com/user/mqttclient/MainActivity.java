@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.github.library.bubbleview.BubbleTextView;
 
@@ -189,19 +190,23 @@ public class MainActivity extends AppCompatActivity {
 
         private class hostHolder extends RecyclerView.ViewHolder {
             BubbleTextView mBubbleTxtView;
+            ImageView mImageView;
 
             public hostHolder(View itemView) {
                 super(itemView);
                 mBubbleTxtView = itemView.findViewById(R.id.textView);
+                mImageView = itemView.findViewById(R.id.image);
             }
         }
 
         private class clientHolder extends RecyclerView.ViewHolder {
             BubbleTextView mBubbleTxtView;
+            ImageView mImageView;
 
             public clientHolder(View itemView) {
                 super(itemView);
                 mBubbleTxtView = itemView.findViewById(R.id.textView);
+                mImageView = itemView.findViewById(R.id.image);
             }
         }
     }
