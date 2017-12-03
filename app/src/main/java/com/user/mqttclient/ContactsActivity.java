@@ -5,21 +5,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.widget.Toast;
 
 import static com.user.mqttclient.RecycleViewDivider.VERTICAL_LIST;
 
 public class ContactsActivity extends AppCompatActivity {
     private final String TAG = "ContactsActivity";
     private RecyclerView mContactsRecycleView;
-    private contactsAdapter mContactsAdapter;
+    private ContactsListAdapter mContactsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +22,21 @@ public class ContactsActivity extends AppCompatActivity {
         mContactsRecycleView = findViewById(R.id.contacts_list);
 
         mContactsRecycleView.setLayoutManager(new LinearLayoutManager(this));
-        mContactsAdapter = new contactsAdapter();
+        mContactsAdapter = new ContactsListAdapter();
         mContactsRecycleView.setAdapter(mContactsAdapter);
+        mContactsAdapter.setOnItemClickListener(new ContactsListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                startActivity(new Intent(ContactsActivity.this, ChatActivity.class));
+                Toast.makeText(getApplicationContext(), "click: " + position, Toast.LENGTH_SHORT).show();
+            }
+        });
+        mContactsAdapter.setOnItemLongClickListener(new ContactsListAdapter.OnItemLongClickListener() {
+            @Override
+            public void onItemLongClick(View view, int position) {
+                Toast.makeText(getApplicationContext(), "long click: " + position, Toast.LENGTH_SHORT).show();
+            }
+        });
         mContactsRecycleView.addItemDecoration(new RecycleViewDivider(this, VERTICAL_LIST));
         initList();
     }
@@ -45,47 +52,7 @@ public class ContactsActivity extends AppCompatActivity {
         getApplicationContext().sendBroadcast(new Intent("finish"));
     }
 
-    private class contactsAdapter extends RecyclerView.Adapter {
-        private List<contactsDataModel> mMessageList = new ArrayList<>();
 
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            LayoutInflater mInflater = LayoutInflater.from(ContactsActivity.this);
-            RecyclerView.ViewHolder viewHolder;
-            View mView = mInflater.inflate(R.layout.item_contacts, parent, false);
-            viewHolder = new contactsHolder(mView);
-
-            return viewHolder;
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            ((contactsHolder) holder).mNickname.setText(this.mMessageList.get(position).mNickname);
-            ((contactsHolder) holder).mUserID.setText(this.mMessageList.get(position).mUserID);
-        }
-
-        @Override
-        public int getItemCount() {
-            return this.mMessageList.size();
-        }
-
-        private class contactsHolder extends RecyclerView.ViewHolder {
-            ImageView mImageView;
-            TextView mNickname;
-            TextView mUserID;
-
-            public contactsHolder(View itemView) {
-                super(itemView);
-                mImageView = itemView.findViewById(R.id.icon);
-                mNickname = itemView.findViewById(R.id.nickname);
-                mUserID = itemView.findViewById(R.id.userID);
-            }
-        }
-
-        public void setData(contactsDataModel model) {
-            this.mMessageList.add(model);
-        }
-    }
 
 
     public void updateMessage(String imageSrc, String nickName, String userID) {
@@ -96,7 +63,7 @@ public class ContactsActivity extends AppCompatActivity {
 
         mContactsAdapter.setData(mContactsDataModel);
         mContactsAdapter.notifyDataSetChanged();
-        //mContactsRecycleView.smoothScrollToPosition(mContactsAdapter.getItemCount());
+        mContactsRecycleView.smoothScrollToPosition(mContactsAdapter.getItemCount());
     }
 
     public class contactsDataModel {

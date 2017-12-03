@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#C8FFFF"
     android:orientation="vertical"
-    tools:context="com.user.mqttclient.MainActivity">
+    tools:context="com.user.mqttclient.ChatActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycle_list"

@@ -52,7 +52,9 @@ public class LoginActivity extends AppCompatActivity {
                 String username = mEditText_User.getText().toString();
                 String password = mEditText_Password.getText().toString();
                 Log.d(TAG, "username: " + username + " password: " + password);
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                //startActivity(new Intent(LoginActivity.this, ContactsActivity.class));
+
+                startActivity(new Intent(LoginActivity.this, ChatActivity.class));
             }
         });
         mBtn_Cancel = findViewById(R.id.btn_cancel);
@@ -138,7 +140,7 @@ public class LoginActivity extends AppCompatActivity {
     private BroadcastReceiver mFinishReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if("finish".equals(intent.getAction())) {
+            if ("finish".equals(intent.getAction())) {
                 finish();
             }
         }

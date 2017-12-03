@@ -1,6 +1,5 @@
 package com.user.mqttclient;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,8 +25,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-    private static final String TAG = MainActivity.class.getSimpleName();
+public class ChatActivity extends AppCompatActivity {
+    private static final String TAG = ChatActivity.class.getSimpleName();
 
     MqttService mMqttService = new MqttService();
     private String mBrokerUrl = "tcp://192.168.199.56:1883";
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_chat);
 
         mRecyclerView = findViewById(R.id.recycle_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -137,18 +136,12 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        getApplicationContext().sendBroadcast(new Intent("finish"));
-    }
-
     private class bubbleAdapter extends RecyclerView.Adapter {
         private List<DataModel> mMessageList = new ArrayList<>();
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            LayoutInflater mInflater = LayoutInflater.from(MainActivity.this);
+            LayoutInflater mInflater = LayoutInflater.from(getApplicationContext());
             RecyclerView.ViewHolder viewHolder = null;
             if (viewType == DataModel.TYPE_SUBSCRIBE) {
                 View mView = mInflater.inflate(R.layout.item_client, parent, false);

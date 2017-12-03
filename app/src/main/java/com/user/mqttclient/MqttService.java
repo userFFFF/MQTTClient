@@ -58,7 +58,7 @@ public class MqttService {
                     @Override
                     public void onSuccess(IMqttToken asyncActionToken) {
                         Log.i(TAG, "connect onSuccess");
-                        subscribe(mTopicName, 2);
+                        subscribe("#", 2);
                     }
 
                     @Override
