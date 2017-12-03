@@ -34,21 +34,21 @@ public class ContactsListAdapter extends RecyclerView.Adapter {
         ((contactsHolder) holder).mNickname.setText(this.mMessageList.get(position).mNickname);
         ((contactsHolder) holder).mUserID.setText(this.mMessageList.get(position).mUserID);
 
-        if(mOnItemClickListener != null){
+        if (mOnItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int position = holder.getLayoutPosition(); // 1
-                    mOnItemClickListener.onItemClick(holder.itemView,position); // 2
+                    int position = holder.getLayoutPosition();
+                    mOnItemClickListener.onItemClick(holder.itemView, position);
                 }
             });
         }
-        if(mOnItemLongClickListener != null){
+        if (mOnItemLongClickListener != null) {
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
                     int position = holder.getLayoutPosition();
-                    mOnItemLongClickListener.onItemLongClick(holder.itemView,position);
+                    mOnItemLongClickListener.onItemLongClick(holder.itemView, position);
                     return true;
                 }
             });
@@ -73,15 +73,15 @@ public class ContactsListAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public interface OnItemClickListener{
-        void onItemClick(View view,int position);
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
     }
 
-    public interface OnItemLongClickListener{
-        void onItemLongClick(View view,int position);
+    public interface OnItemLongClickListener {
+        void onItemLongClick(View view, int position);
     }
 
-    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener){
+    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener) {
         this.mOnItemClickListener = mOnItemClickListener;
     }
 

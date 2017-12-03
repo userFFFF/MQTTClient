@@ -52,9 +52,6 @@ public class ContactsActivity extends AppCompatActivity {
         getApplicationContext().sendBroadcast(new Intent("finish"));
     }
 
-
-
-
     public void updateMessage(String imageSrc, String nickName, String userID) {
         contactsDataModel mContactsDataModel = new contactsDataModel();
         mContactsDataModel.mImageSrc = imageSrc;

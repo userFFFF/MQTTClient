@@ -52,9 +52,9 @@ public class LoginActivity extends AppCompatActivity {
                 String username = mEditText_User.getText().toString();
                 String password = mEditText_Password.getText().toString();
                 Log.d(TAG, "username: " + username + " password: " + password);
-                //startActivity(new Intent(LoginActivity.this, ContactsActivity.class));
+                startActivity(new Intent(LoginActivity.this, ContactsActivity.class));
 
-                startActivity(new Intent(LoginActivity.this, ChatActivity.class));
+                //startActivity(new Intent(LoginActivity.this, ChatActivity.class));
             }
         });
         mBtn_Cancel = findViewById(R.id.btn_cancel);
