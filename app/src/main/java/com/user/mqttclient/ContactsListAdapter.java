@@ -73,6 +73,21 @@ public class ContactsListAdapter extends RecyclerView.Adapter {
         }
     }
 
+    public void addContacts(ContactsActivity.contactsDataModel model) {
+        mMessageList.add(model);
+        notifyItemInserted(getItemCount());
+    }
+
+    public void removeContacts(int position) {
+        mMessageList.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public void changeContacts(int position, ContactsActivity.contactsDataModel model) {
+        mMessageList.set(position, model);
+        notifyItemChanged(position);
+    }
+
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
     }

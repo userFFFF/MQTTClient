@@ -28,12 +28,26 @@ public class ContactsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position) {
                 startActivity(new Intent(ContactsActivity.this, ChatActivity.class));
+
+//                contactsDataModel mContactsDataModel = new contactsDataModel();
+//                mContactsDataModel.mImageSrc = "FFF";
+//                mContactsDataModel.mNickname = "HHHHHHH";
+//                mContactsDataModel.mUserID = "90879080";
+//
+//                mContactsAdapter.addContacts(mContactsDataModel);
                 Toast.makeText(getApplicationContext(), "click: " + position, Toast.LENGTH_SHORT).show();
             }
         });
         mContactsAdapter.setOnItemLongClickListener(new ContactsListAdapter.OnItemLongClickListener() {
             @Override
             public void onItemLongClick(View view, int position) {
+                mContactsAdapter.removeContacts(position);
+                contactsDataModel mContactsDataModel = new contactsDataModel();
+                mContactsDataModel.mImageSrc = "FFF";
+                mContactsDataModel.mNickname = "FFFHHH";
+                mContactsDataModel.mUserID = "999999";
+
+                mContactsAdapter.changeContacts(position - 2, mContactsDataModel);
                 Toast.makeText(getApplicationContext(), "long click: " + position, Toast.LENGTH_SHORT).show();
             }
         });

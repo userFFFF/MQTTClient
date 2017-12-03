@@ -7,5 +7,6 @@
     <string name="txt_cancel">取    消</string>
     <string name="txt_Transformation">显示密码</string>
     <string name="txt_contacts">联系人</string>
+    <string name="txt_friend">User</string>
     <string name="alphabet_and_number">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</string>
 </resources>
