@@ -1,5 +1,7 @@
 package com.user.mqttclient;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,11 +45,19 @@ public class ChatActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private bubbleAdapter mBubbleAdapter;
 
+
+    //SharedPreferences
+    SharedPreferences mSharedPre;
+
     List<DataModel> updateMessage = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mSharedPre = getSharedPreferences(ShareConfig.NAME, Activity.MODE_PRIVATE);
+        String title = mSharedPre.getString(ShareConfig.NICKNAME, "XXXX");
+        title = title + "(" + mSharedPre.getString(ShareConfig.USERID, "000000") + ")";
+        setTitle(title);
         setContentView(R.layout.activity_chat);
 
         mRecyclerView = findViewById(R.id.recycle_list);
@@ -141,7 +151,7 @@ public class ChatActivity extends AppCompatActivity {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            LayoutInflater mInflater = LayoutInflater.from(getApplicationContext());
+            LayoutInflater mInflater = LayoutInflater.from(parent.getContext());
             RecyclerView.ViewHolder viewHolder = null;
             if (viewType == DataModel.TYPE_SUBSCRIBE) {
                 View mView = mInflater.inflate(R.layout.item_client, parent, false);

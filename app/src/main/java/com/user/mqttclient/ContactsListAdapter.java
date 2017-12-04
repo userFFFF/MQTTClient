@@ -60,6 +60,14 @@ public class ContactsListAdapter extends RecyclerView.Adapter {
         return this.mMessageList.size();
     }
 
+    public ContactsActivity.contactsDataModel getContactsInfo(int position) {
+        ContactsActivity.contactsDataModel mContactsDataModel = new ContactsActivity.contactsDataModel();
+        mContactsDataModel.mImageSrc = mMessageList.get(position).mImageSrc;
+        mContactsDataModel.mNickname = mMessageList.get(position).mNickname;
+        mContactsDataModel.mUserID = mMessageList.get(position).mUserID;
+        return mContactsDataModel;
+    }
+
     private class contactsHolder extends RecyclerView.ViewHolder {
         ImageView mImageView;
         TextView mNickname;
