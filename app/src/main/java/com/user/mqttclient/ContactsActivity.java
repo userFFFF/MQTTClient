@@ -76,11 +76,12 @@ public class ContactsActivity extends AppCompatActivity {
         getApplicationContext().sendBroadcast(new Intent("finish"));
     }
 
-    public void updateMessage(String imageSrc, String nickName, String userID) {
+    public void updateMessage(String imageSrc, String nickName, String userID, int unRead) {
         contactsDataModel mContactsDataModel = new contactsDataModel();
         mContactsDataModel.mImageSrc = imageSrc;
         mContactsDataModel.mNickname = nickName;
         mContactsDataModel.mUserID = userID;
+        mContactsDataModel.mUnRead = unRead;
 
         mContactsAdapter.setData(mContactsDataModel);
         mContactsAdapter.notifyDataSetChanged();
@@ -91,6 +92,7 @@ public class ContactsActivity extends AppCompatActivity {
         public String mImageSrc;
         public String mNickname;
         public String mUserID;
+        public int mUnRead;
     }
 
     public void alertDialogDeleteContacts(final int position) {
@@ -120,7 +122,7 @@ public class ContactsActivity extends AppCompatActivity {
         while (i < 20) {
             String mNickname = "User-" + i;
             int num = (int) ((Math.random() * 9 + 1) * 100000);
-            updateMessage("icon", mNickname, String.valueOf(num));
+            updateMessage("icon", mNickname, String.valueOf(num), 0);
             i++;
         }
     }

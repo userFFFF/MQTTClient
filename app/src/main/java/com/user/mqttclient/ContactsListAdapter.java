@@ -1,6 +1,7 @@
 package com.user.mqttclient;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,13 @@ public class ContactsListAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         ((contactsHolder) holder).mNickname.setText(this.mMessageList.get(position).mNickname);
         ((contactsHolder) holder).mUserID.setText(this.mMessageList.get(position).mUserID);
+        Log.d("ContactsListAdapter", "unread: " + this.mMessageList.get(position).mUnRead);
+        if (this.mMessageList.get(position).mUnRead == 0) {
+            ((contactsHolder) holder).mUnread.setVisibility(View.GONE);
+        } else {
+            ((contactsHolder) holder).mUnread.setVisibility(View.VISIBLE);
+            ((contactsHolder) holder).mUnread.setText(String.valueOf(this.mMessageList.get(position).mUnRead));
+        }
 
         if (mOnItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +73,7 @@ public class ContactsListAdapter extends RecyclerView.Adapter {
         mContactsDataModel.mImageSrc = mMessageList.get(position).mImageSrc;
         mContactsDataModel.mNickname = mMessageList.get(position).mNickname;
         mContactsDataModel.mUserID = mMessageList.get(position).mUserID;
+        mContactsDataModel.mUnRead = mMessageList.get(position).mUnRead;
         return mContactsDataModel;
     }
 
@@ -72,12 +81,14 @@ public class ContactsListAdapter extends RecyclerView.Adapter {
         ImageView mImageView;
         TextView mNickname;
         TextView mUserID;
+        TextView mUnread;
 
         public contactsHolder(View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.icon);
             mNickname = itemView.findViewById(R.id.nickname);
             mUserID = itemView.findViewById(R.id.userID);
+            mUnread = itemView.findViewById(R.id.message_unread_count);
         }
     }
 
